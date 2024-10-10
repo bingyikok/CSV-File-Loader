@@ -5,11 +5,12 @@
   export let data: any = [];
   export let error: string | null = null;
   
-  let items : any = data.data;
+  let items : { [key:string]:string }[] = data.data;
   let currentPage : number = 1;
   let itemsPerPage : number = 10;
   let totalPages : number;
   let totalEntries : number = 0;
+  let searchBar : string = "";
 
   const headers = Object.keys(items[0]);
 
@@ -51,6 +52,12 @@
 	}
   }
 
+  function filterRows() {
+    items = items.filter(item => 
+    Object.values(item).some(val => String(val).toLowerCase().includes(searchBar.toLowerCase()))
+    )
+  }
+
   function nextPage() {
     if (currentPage < totalPages) {
       updateRows(currentPage+1);
@@ -67,6 +74,9 @@
 {#if error}
   <p>Error: {error}</p>
 {:else}
+<label for="searchBar">Search Bar</label>
+<input  type="text" id="searchBar" bind:value={searchBar} on:change={() => filterRows()} placeholder="Search Bar" />
+<button on:click={()=>updateRows(0)} >Reset</button>
   {#if items.length > 0}
     <table>
       <thead>

@@ -11,7 +11,7 @@
   let totalPages : number;
   let totalEntries : number = 0;
   let searchBar : string = "";
-  let allEntries : { [key:string]:string }[] = data.data;
+  let allEntries : { [key:string]:string }[];
 
   const headers = Object.keys(items[0]);
 
@@ -22,7 +22,8 @@
 		});
 
     if (response.status === 200) {
-      totalEntries = response.data;
+      totalEntries = response.data.length;
+      allEntries = response.data
       totalPages = Math.ceil(totalEntries / itemsPerPage);
     }
 	} catch (error: any) {

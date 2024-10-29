@@ -27,7 +27,7 @@ exports.noOfEntries = async (req, res) => {
   try {
       data = await retrieveFromDatabase();
     // console.log(data);
-    res.status(200).send(data.length);
+    res.status(200).send(data);
   } catch (error) {
     console.error("Error during file retrieval:", error);
     res

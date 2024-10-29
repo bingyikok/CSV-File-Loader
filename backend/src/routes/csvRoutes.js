@@ -8,5 +8,5 @@ module.exports = async (fastify, options) => {
 
   fastify.get("/getentries", display.noOfEntries);
 
-//   fastify.get("/tables", display.tables);
+  // fastify.get("/tables", display.tables);
 };

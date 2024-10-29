@@ -11,6 +11,7 @@
   let totalPages : number;
   let totalEntries : number = 0;
   let searchBar : string = "";
+  let allEntries : { [key:string]:string }[] = data.data;
 
   const headers = Object.keys(items[0]);
 
@@ -32,6 +33,7 @@
   })
 
   async function updateRows(index: number) {
+    if(!itemsPerPage) return;
     const limit = itemsPerPage;
     const skip = index * itemsPerPage;
     currentPage = index;
@@ -53,7 +55,7 @@
   }
 
   function filterRows() {
-    items = items.filter(item => 
+    items = allEntries.filter(item => 
     Object.values(item).some(val => String(val).toLowerCase().includes(searchBar.toLowerCase()))
     )
   }

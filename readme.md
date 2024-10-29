@@ -28,6 +28,6 @@ CSV File Loader is a web application that allows users to upload CSV files, whic
   - Axios
 
 ## Usage
-  - npm install for node_modules in root/, /backend, /frontend
+  - 'npm run install:all' for nodemodules in root/, /backend, /frontend
   - Modify mysql config in /backend/.env
-  - cd root/ and npm start via concurrently
+  - 'npm start' via concurrently in root/
